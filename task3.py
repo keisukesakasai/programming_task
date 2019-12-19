@@ -5,7 +5,7 @@ import pandas as pd
 #--- imput params.
 spe_num, gen_num = list(map(int, input().split(' ')))
 
-#--- define method.
+#--- define method
 def flatter(x=[]):
     if x == []: return x
     else: return np.sum(x, axis=0)
@@ -31,4 +31,4 @@ elif spe_num == 0:
     ans_num = df['sum'].max()
     ans_date = df.index[df['sum'] == df['sum'].max()][0]
 
-print('{0} {1}\n'.format(ans_date, ans_num))task3
+print('{0} {1}\n'.format(ans_date, ans_num))
