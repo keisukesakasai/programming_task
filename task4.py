@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 #--- import modules
 import numpy as np
 
 #--- input params. ( forget to record... )
 N, S =
 board =
-N_game = 5 # ¸ŞÌÜÊÂ¤Ù
+N_game = 5 # äº”ç›®ä¸¦ã¹
 
 #--- define method
 def search_five_lineup_xy(board=[], b=0):
