@@ -3,7 +3,7 @@
 #--- import modules
 import numpy as np
 
-#--- input params. ( forget to record... )
+#--- input params. ( forgot to record... )
 N, S =
 board =
 N_game = 5 # 五目並べ
