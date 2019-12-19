@@ -27,7 +27,9 @@ def search_five_lineup_diag(board=[], b=0):
     def diag(board=board, b=b, direction='rd'):
         flag_list = []
         if direction == 'ld':
-            board = np.array([board.copy()[i][::-1] for i in range(N)]).reshape(N, N).T
+            board = np.array(
+                [board.copy()[i][::-1] for i in range(N)]
+                ).reshape(N, N).T
         # diagonal
         diag_list = np.diag(board)
         flag_list.extend(
@@ -69,6 +71,8 @@ ans = search_reach_coor(board, S)
 if len(ans) != 0: print(ans[0])
 elif len(ans) == 0:
     ans = search_reach_coor(board, not(S))
-    if len(ans) == 0: print('{} {}\n'.format(np.where(board==-1)[1][0] + 1, np.where(board==-1)[0][0] + 1))
+    if len(ans) == 0: print('{} {}\n'.format(np.where(board==-1)[1][0] + 1,
+                                             np.where(board==-1)[0][0] + 1)
+                                )
     elif len(ans) == 1: print(ans[0])
     elif len(ans) >= 2: print('LOSE\n')
