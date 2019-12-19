@@ -1,23 +1,29 @@
+#--- import modules
 import numpy as np
 import pandas as pd
 
+#--- imput params.
 spe_num, gen_num = list(map(int, input().split(' ')))
 
+#--- define method.
 def flatter(x=[]):
     if x == []: return x
     else: return np.sum(x, axis=0)
 
+#--- Set DataFrame
 spe = flatter([input().split(' ')[1:] for i in range(spe_num)])
 gen = flatter([input().split(' ')[1:] for i in range(gen_num)])
 date = sorted(set(spe + gen))
 
 columns = ['special', 'general', 'sum']
 df = pd.DataFrame(columns=columns, index=date)
+
 for _date in date:
     df['special'][_date] = spe.count(_date)
     df['general'][_date] = gen.count(_date)
 df['sum'] = df['special'] + df['general']
 
+#--- main
 if spe_num != 0:
     ans = df['sum'][df['special'] == spe_num]
     ans_date, ans_num = ans.keys()[0], ans.values[0]

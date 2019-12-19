@@ -1,5 +1,8 @@
+#--- imput params.
 N, L = input().split(' ')
 length_list = list(map(int, [input() for _ in range(int(N))]))
+
+#--- main
 cnt, residue = 1, int(L)
 for i in range(len(length_list) - 1):
     residue = residue - length_list[i]

@@ -1,17 +1,21 @@
-#--- import modules.
+#--- import modules
 import numpy as np
 
-#--- input params.
+#--- input params. ( forget to record... )
 N, S =
 board =
 
-#--- define method.
+#--- define method
 def search_five_lineup_xy(board=[], b=0):
     def xy(board=board, b=b, xy='x'):
         flag_list = []
         if xy == 'y': board = board.T
         for raw_num, raw_list in enumerate(board, start=1):
-            flag_list.extend([list(raw_list[i:i+N_game]) == [b] * N_game for i in range(N - N_game + 1)])
+            flag_list.extend(
+                [list(raw_list[i:i+N_game]) == [b] * N_game
+                     for i in range(N - N_game + 1)]
+                )
+
         return any(flag_list)
 
     return xy(board=board, b=b, xy='x') | xy(board=board, b=b, xy='y')
@@ -23,15 +27,24 @@ def search_five_lineup_diag(board=[], b=0):
             board = np.array([board.copy()[i][::-1] for i in range(N)]).reshape(N, N).T
         # diagonal
         diag_list = np.diag(board)
-        flag_list.extend([list(diag_list[i:i+N_game]) == [b] * N_game for i in range(N - N_game + 1)])
+        flag_list.extend(
+            [list(diag_list[i:i+N_game]) == [b] * N_game
+                 for i in range(N - N_game + 1)]
+            )
         # column
         for i in range(1, N - 4):
             diag_list = [board[j][i+j] for j in range(N - i)]
-            flag_list.extend([diag_list[j:j+N_game] == [b] * N_game for j in range(N - N_game + 1 - i)])
+            flag_list.extend(
+                [diag_list[j:j+N_game] == [b] * N_game
+                     for j in range(N - N_game + 1 - i)]
+                )
         # raw
         for i in range(1, N - 4):
             diag_list = [board[:, j][i+j] for j in range(N - i)]
-            flag_list.extend([diag_list[j:j+N_game] == [b] * N_game for j in range(N - N_game + 1 - i)])
+            flag_list.extend(
+                [diag_list[j:j+N_game] == [b] * N_game
+                     for j in range(N - N_game + 1 - i)]
+                )
 
         return any(flag_list)
 
