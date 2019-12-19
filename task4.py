@@ -13,9 +13,9 @@ def search_five_lineup_xy(board=[], b=0):
     def xy(board=board, b=b, xy='x'):
         flag_list = []
         if xy == 'y': board = board.T
-        for raw_num, raw_list in enumerate(board, start=1):
+        for row_num, row_list in enumerate(board, start=1):
             flag_list.extend(
-                [list(raw_list[i:i+N_game]) == [b] * N_game
+                [list(row_list[i:i+N_game]) == [b] * N_game
                      for i in range(N - N_game + 1)]
                 )
 
@@ -41,7 +41,7 @@ def search_five_lineup_diag(board=[], b=0):
                 [diag_list[j:j+N_game] == [b] * N_game
                      for j in range(N - N_game + 1 - i)]
                 )
-        # raw
+        # row
         for i in range(1, N - 4):
             diag_list = [board[:, j][i+j] for j in range(N - i)]
             flag_list.extend(
@@ -56,11 +56,11 @@ def search_five_lineup_diag(board=[], b=0):
 def search_reach_coor(board=[], b=0):
     coor = []
     ind_empty = np.where(board==-1)
-    for ind_raw, ind_col in zip(ind_empty[0], ind_empty[1]):
+    for ind_row, ind_col in zip(ind_empty[0], ind_empty[1]):
         board_rep = board.copy()
-        board_rep[ind_raw][ind_col] = b
+        board_rep[ind_row][ind_col] = b
         if search_five_lineup_xy(board_rep, b) | search_five_lineup_diag(board_rep, b):
-            coor.append('{0} {1}\n'.format(ind_col+1, ind_raw+1))
+            coor.append('{0} {1}\n'.format(ind_col+1, ind_row+1))
 
     return coor
 
