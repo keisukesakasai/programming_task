@@ -5,7 +5,7 @@ import numpy as np
 
 #--- input params.
 N, S = np.array(input().rstrip().split(' ')).astype('int')
-board = np.array([input().rstrip().split(' ') for i in range(N)])
+board = np.array([input().rstrip().split(' ') for i in range(N)]).astype('int32')
 N_game = 5 # 五目並べ
 
 #--- define method
