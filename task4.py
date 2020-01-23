@@ -3,9 +3,9 @@
 #--- import modules
 import numpy as np
 
-#--- input params. ( forgot to record... )
-N, S =
-board =
+#--- input params.
+N, S = np.array(input().rstrip().split(' ')).astype('int')
+board = np.array([input().rstrip().split(' ') for i in range(N)])
 N_game = 5 # 五目並べ
 
 #--- define method
